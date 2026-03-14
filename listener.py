@@ -2,6 +2,7 @@ import speech_recognition as sr
 r = sr.Recognizer()
 r.energy_threshold = 350
 r.pause_threshold = 2
+
 def listen():
 
     text = ""    
@@ -23,6 +24,6 @@ def listen():
 
     return text.lower()
 
-command = listen()
-print("You said: ",command)
+# command = listen()
+# print("You said: ",command)
 
