@@ -1,5 +1,5 @@
-from listener import listen
-from processor import process_command
+from core.listener import listen
+from core.processor import process_command
 
 command = listen()
 print(f"you said: {command}")

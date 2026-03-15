@@ -1,11 +1,11 @@
-from speaker import speak
+from core.speaker import speak
 import pywhatkit as kit
 import utils.clock as clock
 import utils.wiki as wiki
+import utils.app_manager as am
 
 google_triggo = [    "search google for", "open google and search about",
     "google", "open google and search", "search for", "look up", "find"]
-
 yt_triggo = ["play", "play on youtube", "on youtube"]
 
 def process_command(command):
@@ -29,16 +29,15 @@ def process_command(command):
 #google browser search=================
     elif any(key in command for key in google_triggo):
         topic = command
-        
-        for trigger in google_triggo:
-            if trigger in topic:
-                topic = topic.replace(trigger, "")
+        for key in google_triggo:
+            if key in topic:
+                topic = topic.replace(key, "")
         topic = topic.strip()
-        
         speak(f"opening google to search {topic}")
         kit.search(topic)
+        
 
-#youtube accessing====================
+#youtube accessing=====================
     elif any(key in command for key in yt_triggo):
         topic = command
         for key in yt_triggo:
@@ -49,8 +48,20 @@ def process_command(command):
         speak(f"playing {topic}")
         kit.playonyt(topic)
         
-
-
+#app management========================
+    elif any(key in command for key in am.fun_calls.keys()):
+        app = command
+        trigger = 0
+        for key in am.fun_calls.keys():
+            if key in command:
+                app = app.replace(key,"")
+                trigger = key
+        app = app.strip()
+        found = am.open_app(app, trigger)
+        if found==0:
+            speak("Sorry, Application Not Found")
+        
+        
     
     
 

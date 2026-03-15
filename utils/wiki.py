@@ -1,5 +1,6 @@
 import wikipedia
 
+
 wiki_triggers = ["what is", "who is", "tell me about", "seach the wikipedia", "tell me something about"]
 
 # result = wikipedia.summary("guido van rossum", sentences=5)
